@@ -1,13 +1,185 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Creative Portfolio3</title>
+  <title>Creative Portfolio</title>
+  <link rel="stylesheet" href="11style.css">
 </head>
 <body>
 
-<style> 
+<!-- NAVBAR -->
+<header>
+  <div class="logo">MY PORTFOLIO |</div>
+  <nav>
+    <a href="#work">My Projects</a>
+    <a href="#about">About Me</a>
+    <a href="#contact">Contact Me |</a>
+  </nav>
+</header>
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <div class="hero-container">
+    
+    <div class="content-side">
+      <h1>JESSA LABIO PORTFOLIO</h1>
+      <p>A Multimedia Artist</p>
+      <a href="https://canva.link/tge4zuv25xa2d2x" class="btn" target="_blank">
+       View My Complete Projects
+</a>
+    </div>
+
+    <div class="video-side">
+      <video autoplay muted loop playsinline>
+        <source src="img/Video3.mp4" type="video/mp4">
+      </video>
+    </div>
+
+  </div>
+</section>
+
+<script>
+function openModal(src) {
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('imgFull');
+  modal.style.display = "flex";
+  modalImg.src = src;
+}
+</script>
+
+<script>
+const track = document.querySelector('.carousel-track');
+const nextBtn = document.querySelector('.next');
+const prevBtn = document.querySelector('.prev');
+
+let cards = Array.from(track.children);
+
+// Clone MULTIPLE cards for smooth looping
+const clonesBefore = cards.slice(-3).map(card => card.cloneNode(true));
+const clonesAfter = cards.slice(0, 3).map(card => card.cloneNode(true));
+
+// Add clones
+clonesBefore.forEach(clone => track.insertBefore(clone, track.firstChild));
+clonesAfter.forEach(clone => track.appendChild(clone));
+
+cards = Array.from(track.children);
+
+const card = cards[0];
+const style = window.getComputedStyle(card);
+const cardWidth = card.offsetWidth + parseInt(style.marginLeft) + parseInt(style.marginRight);
+
+let index = 3; // start after clones
+let position = -cardWidth * index;
+
+track.style.transform = `translateX(${position}px)`;
+
+// MOVE FUNCTION
+function moveToIndex() {
+  track.style.transition = "transform 0.5s ease-in-out";
+  track.style.transform = `translateX(${-cardWidth * index}px)`;
+}
+
+// NEXT
+nextBtn.addEventListener('click', () => {
+  index++;
+  moveToIndex();
+});
+
+// PREV
+prevBtn.addEventListener('click', () => {
+  index--;
+  moveToIndex();
+});
+
+// LOOP FIX
+track.addEventListener('transitionend', () => {
+  if (index >= cards.length - 3) {
+    track.style.transition = "none";
+    index = 3;
+    track.style.transform = `translateX(${-cardWidth * index}px)`;
+  }
+
+  if (index <= 2) {
+    track.style.transition = "none";
+    index = cards.length - 4;
+    track.style.transform = `translateX(${-cardWidth * index}px)`;
+  }
+});
+</script>
+
+<section class="press-section">
+  <p class="press-label">Jessa Yen Labio | Multimedia Artist</p>
+  
+  <div class="quote-container">
+    <h2 class="quote active" id="quote-Photography">"Capturing the fine details that tell a story. From Rural to Urban shots, I focus on lighting and composition that highlight the authenticity of the subject."</h2>
+    <h2 class="quote" id="quote-Graphic Design">"Design is more than just aesthetics; it’s a strategic tool. I specialize in building cohesive visual identities that translate a brand's core values into magazine, posters, infographics and thumbnails. My goal is to ensure every pixel serves a purpose in the user's journey."</h2>
+     <h2 class="quote" id="quote-Illustration">"Versatile digital illustration designed to complement brand narratives. I focus on vibrant palettes and organic shapes to create engaging visual content."</h2>
+      <h2 class="quote" id="quote-Package Design">"Designing for the first impression. I create aesthetic design and eye catchy through thoughtful packaging that balances structural integrity with shelf-stopping aesthetics."</h2>
+    </div>
+
+  <div class="logo-nav">
+    <button class="logo-btn active" onclick="showQuote('Photography', this)">Photography</button>
+    <button class="logo-btn" onclick="showQuote('Graphic Design', this)">Graphic Design</button>
+    <button class="logo-btn" onclick="showQuote('Illustration', this)">Illustration</button>
+      <button class="logo-btn" onclick="showQuote('Package Design', this)">Package Design</button>
+  </div>
+</section>
+
+<section class="press-section">
+  </section>
+
+<script>
+  function showQuote(brand, element) {
+    // 1. Hide all quotes
+    const quotes = document.querySelectorAll('.quote');
+    quotes.forEach(q => q.style.display = 'none');
+    
+    // 2. Remove 'active' class from all buttons
+    const buttons = document.querySelectorAll('.logo-btn');
+    buttons.forEach(b => b.classList.remove('active'));
+    
+    // 3. Show the target quote and highlight the button
+    document.getElementById('quote-' + brand).style.display = 'block';
+    element.classList.add('active');
+  }
+</script>
+
+
+<!-- ABOUT -->
+<section id="about" class="about">
+  <div class="hero-container1">
+    
+    <div class="content-side1">
+      <h1>About Me</h1>
+      <p>Jessa Labio a 3rd Year Multimedia student studying in iACADEMY, specializing on Photography, Graphic Design, Video Editing, Package Design and Illustration.</p>
+      <p>I'm always open to new projects and collaborations. Feel free to reach out via email or phone, or connect with me on social media! (labiojessayen@gmail.com) & (09394287128 / 09765515451)</p>
+
+      <div class="social-links">
+      <a href="www.linkedin.com/in/jessa-labio-31147b389" class="btn2">LINKEDIN</a>
+
+      <a href="https://www.facebook.com/yenniieeyen" class="btn3" target="_blank">
+       FACEBOOK
+      </a>
+
+      <a href="https://www.instagram.com/Jessbelle.ee" class="btn4" target="_blank">
+       INSTAGRAM
+      </a>
+    </div>
+</div>
+
+    <div class="video-side">
+      <video autoplay muted loop playsinline>
+        <source src="img/Video4.mp4" type="video/mp4">
+      </video>
+    </div>
+</div>
+
+</section>
+
+<footer id="contact">
+  <p>© 2026 Jessa Labio, Inc. All Rights Reserved | Terms of Services Privacy Policy Do not Sell my Information</p>
+</footer>
 
   body {
   margin: 0;
@@ -370,161 +542,5 @@ footer {
   color: white;
   font-size: 20px;
 }
-
-</style>
-</head>
-<body>
-
-  <button class="next">&#10095;</button>
-
-</div>
-</section>
-
-<div id="imageModal" class="modal" onclick="this.style.display='none'" style="display:none; position:fixed; z-index:9999; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); justify-content:center; align-items:center;">
-  <img id="imgFull" style="max-width:90%; max-height:90%; border-radius:10px;">
-</div>
-
-<script>
-function openModal(src) {
-  const modal = document.getElementById('imageModal');
-  const modalImg = document.getElementById('imgFull');
-  modal.style.display = "flex";
-  modalImg.src = src;
-}
-</script>
-
-<script>
-const track = document.querySelector('.carousel-track');
-const nextBtn = document.querySelector('.next');
-const prevBtn = document.querySelector('.prev');
-
-let cards = Array.from(track.children);
-
-// Clone MULTIPLE cards for smooth looping
-const clonesBefore = cards.slice(-3).map(card => card.cloneNode(true));
-const clonesAfter = cards.slice(0, 3).map(card => card.cloneNode(true));
-
-// Add clones
-clonesBefore.forEach(clone => track.insertBefore(clone, track.firstChild));
-clonesAfter.forEach(clone => track.appendChild(clone));
-
-cards = Array.from(track.children);
-
-const card = cards[0];
-const style = window.getComputedStyle(card);
-const cardWidth = card.offsetWidth + parseInt(style.marginLeft) + parseInt(style.marginRight);
-
-let index = 3; // start after clones
-let position = -cardWidth * index;
-
-track.style.transform = `translateX(${position}px)`;
-
-// MOVE FUNCTION
-function moveToIndex() {
-  track.style.transition = "transform 0.5s ease-in-out";
-  track.style.transform = `translateX(${-cardWidth * index}px)`;
-}
-
-// NEXT
-nextBtn.addEventListener('click', () => {
-  index++;
-  moveToIndex();
-});
-
-// PREV
-prevBtn.addEventListener('click', () => {
-  index--;
-  moveToIndex();
-});
-
-// LOOP FIX
-track.addEventListener('transitionend', () => {
-  if (index >= cards.length - 3) {
-    track.style.transition = "none";
-    index = 3;
-    track.style.transform = `translateX(${-cardWidth * index}px)`;
-  }
-
-  if (index <= 2) {
-    track.style.transition = "none";
-    index = cards.length - 4;
-    track.style.transform = `translateX(${-cardWidth * index}px)`;
-  }
-});
-</script>
-
-<section class="press-section">
-  <p class="press-label">Go confidently in the direction of your dreams. Live the life you have imagined - JYL</p>
-  
-  <div class="quote-container">
-    <h2 class="quote active" id="quote-Photography">"Capturing the fine details that tell a story. From Rural to Urban shots, I focus on lighting and composition that highlight the authenticity of the subject."</h2>
-    <h2 class="quote" id="quote-Graphic Design">"Design is more than just aesthetics; it’s a strategic tool. I specialize in building cohesive visual identities that translate a brand's core values into magazine, posters, infographics and thumbnails. My goal is to ensure every pixel serves a purpose in the user's journey."</h2>
-     <h2 class="quote" id="quote-Illustration">"Versatile digital illustration designed to complement brand narratives. I focus on vibrant palettes and organic shapes to create engaging visual content."</h2>
-      <h2 class="quote" id="quote-Package Design">"Designing for the first impression. I create aesthetic design and eye catchy through thoughtful packaging that balances structural integrity with shelf-stopping aesthetics."</h2>
-    </div>
-
-  <div class="logo-nav">
-    <button class="logo-btn active" onclick="showQuote('Photography', this)">Photography</button>
-    <button class="logo-btn" onclick="showQuote('Graphic Design', this)">Graphic Design</button>
-    <button class="logo-btn" onclick="showQuote('Illustration', this)">Illustration</button>
-      <button class="logo-btn" onclick="showQuote('Package Design', this)">Package Design</button>
-  </div>
-</section>
-
-<section class="press-section">
-  </section>
-
-<script>
-  function showQuote(brand, element) {
-    // 1. Hide all quotes
-    const quotes = document.querySelectorAll('.quote');
-    quotes.forEach(q => q.style.display = 'none');
-    
-    // 2. Remove 'active' class from all buttons
-    const buttons = document.querySelectorAll('.logo-btn');
-    buttons.forEach(b => b.classList.remove('active'));
-    
-    // 3. Show the target quote and highlight the button
-    document.getElementById('quote-' + brand).style.display = 'block';
-    element.classList.add('active');
-  }
-</script>
-
-
-<!-- ABOUT -->
-<section id="about" class="about">
-  <div class="hero-container1">
-    
-    <div class="content-side1">
-      <h1>About Me</h1>
-      <p>Jessa Labio a 3rd Year Multimedia student studying in iACADEMY, specializing on Photography, Graphic Design, Video Editing, Package Design and Illustration.</p>
-      <p>I'm always open to new projects and collaborations. Feel free to reach out via email or phone, or connect with me on social media! (labiojessayen@gmail.com) & (09394287128 / 09765515451)</p>
-
-      <div class="social-links">
-      <a href="www.linkedin.com/in/jessa-labio-31147b389" class="btn2">LINKEDIN</a>
-
-      <a href="https://www.facebook.com/yenniieeyen" class="btn3" target="_blank">
-       FACEBOOK
-      </a>
-
-      <a href="https://www.instagram.com/Jessbelle.ee" class="btn4" target="_blank">
-       INSTAGRAM
-      </a>
-    </div>
-</div>
-
-    <div class="video-side">
-      <video autoplay muted loop playsinline>
-        <source src="Video5.mp4" type="video/mp4">
-      </video>
-    </div>
-</div>
-
-</section>
-
-<footer id="contact">
-  <p>© 2026 Jessa Labio, Inc. All Rights Reserved | Terms of Services Privacy Policy Do not Sell my Information</p>
-</footer>
-
 </body>
-</html>
+</html>               
